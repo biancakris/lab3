@@ -1,11 +1,11 @@
 <?php
 
-    function initCards()
-    {
-        
-    }
     function initPlayers()
     {
+        //Initializes points/deck/suits from dec
+        $players_points = array(0, 0, 0, 0);
+        $deck = range(0,51);  //creates array with values 1 to 52
+        $suits = array("clubs","spades","hearts","diamonds");
         //creating player arrays to hold hand
         $player1 = array();
         $player2 = array();
@@ -32,9 +32,10 @@
         }//At the end of for loop each player should have been dealt a hand
         
     }
-    function calcPoints()
+    function calcPoints($hand1, $hand2, $hand3, $hand4)
     {
-        
+        return array_sum($hand1) + array_sum($hand2) + array_sum($hand3) 
+        + array_sum($hand4);   
     }
     function displayHand()
     {

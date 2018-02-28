@@ -1,49 +1,100 @@
 <?php
 
-    function initPlayers()
-    {
-        //Initializes points/deck/suits from dec
-        $players_points = array(0, 0, 0, 0);
-        $deck = range(0,51);  //creates array with values 1 to 52
-        $suits = array("clubs","spades","hearts","diamonds");
-        //creating player arrays to hold hand
-        $player1 = array();
-        $player2 = array();
-        $player3 = array();
-        $player4 = array();
-        
-        //Array holding players images
-        $playerImages = array();
-        
-        //Array holding players scores
-        $playerScores = array();
-        
-        //forloop to deal cards to each players 
-        for($i = 1;  $i < 5; $i++)
-        {
-            //while to to deal cards, while total hand is < 38
-            while(calcPoints("player".$i) < 38)
-            {
-                //gets 'card' from 'deck' and then deletes from deck
-                $card = array_pop($deck);
-                //assign that card to the player
-                $player.$i[] = $card;
-            }
-        }//At the end of for loop each player should have been dealt a hand
-        
-    }
-    function calcPoints($hand1, $hand2, $hand3, $hand4)
-    {
-        return array_sum($hand1) + array_sum($hand2) + array_sum($hand3) 
-        + array_sum($hand4);   
-    }
-    function displayHand()
-    {
-        
-    }
-    function displayWinner()
-    {
-        
-    }
+function displayCard($player, $cardNumber, $value, $suite) {
+    echo "<img id='player$player-$suite-$cardNumber' 
+    src='img/cards/$suite/$value.png' 
+    width ='70' alt = 'player$player-$suite-$cardNumber' 
+    title = 'Player$player-$suite-$cardNumber)'>"; 
+}
 
+function checkWinners($hand0, $hand1, $hand2, $hand3) {
+    $winners = array();
+    $mostPoints = 0;
+    
+    for($i = 0; $i < 4; ++$i) {
+        if(array_sum(${"hand" . $i}) <= 42 &&  
+        array_sum(${"hand" . $i}) > $mostPoints) {
+            $mostPoints = array_sum(${"hand" . $i});
+        } 
+    }
+    
+    for($i = 0; $i < 4; ++$i) {
+        if(array_sum(${"hand" . $i}) == $mostPoints) {
+            $winners[] = $i;
+        }
+    }
+    
+    return $winners;
+}
+
+
+function calcPoints ($hand0, $hand1, $hand2, $hand3) {
+    return array_sum($hand0) + array_sum($hand1) + array_sum($hand2) 
+    + array_sum($hand3);
+}
+
+function displayWinner($winners, $players, $points) {
+    if(count($winners) == 0) {
+        echo"<h1>Nobody Wins</h1>";
+        return;
+        
+    }
+    for($i = 0; $i < count($winners); ++$i) {
+        $winner = $players[$winners[$i]];
+        echo"<h1>$winner wins $points points</h1>";
+    }
+}
+
+
+function playCards() {
+    
+    session_start();
+    $start = microtime(true);
+    $_SESSION['counter']++;
+    $_SESSION['totalTime'];
+    
+    
+    $players = array("Eli", "Bianca", "Juan", "Mustafa");
+    
+    $hand0 = array();
+    $hand1 = array(); 
+    $hand2 = array(); 
+    $hand3 = array();
+    
+    $deck = range(0,51);  //creates array with values 1 to 52
+    
+    $suite = array("clubs","spades","hearts","diamonds");
+    
+    shuffle($deck);
+    shuffle($players);
+    
+    for($i = 0; $i < count($players); ++$i) {
+        $cardNumber = 0;
+        while(array_sum(${"hand" . $i}) < 37) {
+            ${"hand" . $i}[] = $deck[0] % 13 + 1;
+            displayCard($i, $cardNumber, $deck[0] % 13 + 1, $suite[floor($deck[0] / 13)]);
+            unset($deck[0]);
+            $deck = array_values($deck);
+            $cardNumber++;
+        }
+        echo"<br/>";
+        echo"<h3 id = 'name'>$players[$i]:</h3>";
+        echo"<br/>";
+        $current_player_points = array_sum(${"hand" . $i});
+        echo"<h3 id = 'score'> Score: $current_player_points</h3>";
+        echo"<br/>";
+    }
+    
+    displayWinner(checkWinners($hand0, $hand1, $hand2, $hand3), $players, 
+    calcPoints ($hand0, $hand1, $hand2, $hand3));
+    
+    echo"<br/>";
+    $elapsedSecs = microtime(true) - $start;
+    $_SESSION['totalTime'] += $elapsedSecs;
+    echo "Time Elapses: " . $elapsedSecs . " secs";
+    echo"<br/>";
+    echo "Average Time Elapses: " . $_SESSION['totalTime'] / $_SESSION['counter'] . " secs";
+    echo"<br/>";
+    echo"Games played: " . $_SESSION['counter'];  
+}
 ?>

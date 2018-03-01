@@ -15,12 +15,14 @@
     
     input{
         position:absolute;
+        margin:0%;
         font-size:1.3em;
-        background-color: Transparent;
-        border:none;
+        background-color: white;
+        border: double;
+        border-radius: 10px;
         outline:none; /*hides button outline when clicking on it*/
         font-weight:bold;
-        color:yellow;
+        color:red;
         cursor:pointer;
     }
     

@@ -1,7 +1,7 @@
 <?php
 
 function displayCard($player, $cardNumber, $value, $suite) {
-    echo "<img id='player$player-$suite-$cardNumber' 
+    echo "<img id='player$player' 
     src='img/cards/$suite/$value.png' 
     width ='70' alt = 'player$player-$suite-$cardNumber' 
     title = 'Player$player-$suite-$cardNumber)'>"; 
@@ -70,6 +70,7 @@ function playCards() {
     
     for($i = 0; $i < count($players); ++$i) {
         $cardNumber = 0;
+        echo"<h3 id = 'name'>$players[$i]:</h3>";
         while(array_sum(${"hand" . $i}) < 37) {
             ${"hand" . $i}[] = $deck[0] % 13 + 1;
             displayCard($i, $cardNumber, $deck[0] % 13 + 1, $suite[floor($deck[0] / 13)]);
@@ -77,9 +78,7 @@ function playCards() {
             $deck = array_values($deck);
             $cardNumber++;
         }
-        echo"<br/>";
-        echo"<h3 id = 'name'>$players[$i]:</h3>";
-        echo"<br/>";
+        
         $current_player_points = array_sum(${"hand" . $i});
         echo"<h3 id = 'score'> Score: $current_player_points</h3>";
         echo"<br/>";

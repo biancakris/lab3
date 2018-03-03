@@ -13,15 +13,13 @@
         </style>
     </head>
     <body>
-
         <center>
-            <h1>Silver Jack Game</h1>
-        </center>
         <div id = "main">
             <?=playCards()?>
             <form>
                 <input type="submit" value="Play!"/>
             </form>
         </div>
+        </center>
     </body>
 </html>

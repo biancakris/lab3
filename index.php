@@ -13,13 +13,13 @@
         </style>
     </head>
     <body>
-        <center>
+        <!--<center>-->
         <div id = "main">
             <?=playCards()?>
             <form>
                 <input type="submit" value="Play!"/>
             </form>
         </div>
-        </center>
+        <!--</center>-->
     </body>
 </html>

@@ -1,49 +1,62 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina');
 
     
-     body {
-         background-image: url('../img/bg.jpg');
+    body {
+        background-image: url('../img/bg.jpg');
         background-repeat: no-repeat;
-/*+        background-repeat: repeat;*/
-         background-size: cover;
-         color: white;
-     }
-     
+        background-size: cover;
+        color: white;
+    }
+    h1{
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    h3{
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
     #gameHeading {
         text-align: center;
-        font-size:3.8em;
+        font-size:5.8em;
+        padding-bottom: 0px;
     }
     
-     #main {
-         font-family: 'Baloo Bhaina', cursive;
-        /*width:600px;*/
+    #main {
+        font-family: 'Baloo Bhaina', cursive;
         width:900px;
-         height:500px;
-         margin: auto;
+        height:auto;
+        margin: auto;
         padding: 10px;
     }
     
     #winner, #timer{
         text-align: center;
     }
+    #winner{
+        font-size: 30px;
+        Margin: auto;
+    }
     
     #score {
         float:right;
      }
-     #name{
-         float: left;
-         padding-right: 10px;
-         font-size: 25px;
-     }
+    #name{
+        float: left;
+        padding-right: 10px;
+        font-size: 25px;
+        width: 100pt;
+    }
      
-     input{
-         position:absolute;
+    input{
+         
         font-family: 'Baloo Bhaina';
-        position:relative;
-        width: 900px;
-         margin:0%;
-        font-size:1.8em;
-         background-color: white;
-         border: thin;
-         border-radius: 10px;
+        /*position:absolute;*/
+        width: 300px;
+        margin: auto;
+        font-size:30pt;
+        background-color: white;
+        border: thick;
+        border-radius: 10px;
+        text-align: center;
+        margin-left: 300px;
      }

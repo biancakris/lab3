@@ -34,20 +34,27 @@ function calcPoints ($hand0, $hand1, $hand2, $hand3) {
 }
 
 function displayWinner($winners, $players, $points) {
+    echo"<div id = 'winner'>";
+    echo"<h1>";
     if(count($winners) == 0) {
-        echo"<h1>Nobody Wins</h1>";
+        echo"Nobody Wins";
+        echo"</h1>";
+        echo"</div>";
         return;
         
     }
     for($i = 0; $i < count($winners); ++$i) {
         $winner = $players[$winners[$i]];
-        echo"<h1>$winner wins $points points</h1>";
+        echo"$winner wins $points points";
+        echo"<br/>";
     }
+    echo"</h1>";
+    echo"</div>";
 }
 
 
 function playCards() {
-    
+    echo"<h1 id = 'gameHeading'> Silver Jack Game </h1>";
     session_start();
     $start = microtime(true);
     $_SESSION['counter']++;
@@ -71,6 +78,7 @@ function playCards() {
     for($i = 0; $i < count($players); ++$i) {
         $cardNumber = 0;
         echo"<h3 id = 'name'>$players[$i]:</h3>";
+        
         while(array_sum(${"hand" . $i}) < 37) {
             ${"hand" . $i}[] = $deck[0] % 13 + 1;
             displayCard($i, $cardNumber, $deck[0] % 13 + 1, $suite[floor($deck[0] / 13)]);
@@ -81,19 +89,20 @@ function playCards() {
         
         $current_player_points = array_sum(${"hand" . $i});
         echo"<h3 id = 'score'> Score: $current_player_points</h3>";
-        echo"<br/>";
+        echo"<br/><hr>";
     }
     
     displayWinner(checkWinners($hand0, $hand1, $hand2, $hand3), $players, 
     calcPoints ($hand0, $hand1, $hand2, $hand3));
     
-    echo"<br/>";
     $elapsedSecs = microtime(true) - $start;
     $_SESSION['totalTime'] += $elapsedSecs;
+    echo"<div id = 'timer'>";
     echo "Time Elapses: " . $elapsedSecs . " secs";
     echo"<br/>";
     echo "Average Time Elapses: " . $_SESSION['totalTime'] / $_SESSION['counter'] . " secs";
     echo"<br/>";
     echo"Games played: " . $_SESSION['counter'];  
+    echo"</div>";
 }
 ?>

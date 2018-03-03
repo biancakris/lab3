@@ -19,11 +19,12 @@
         text-align: center;
         font-size:5.8em;
         padding-bottom: 0px;
+        text-decoration: underline;
     }
     
     #main {
         font-family: 'Baloo Bhaina', cursive;
-        width:900px;
+        width:1000px;
         height:auto;
         margin: auto;
         padding: 10px;
@@ -34,7 +35,7 @@
     }
     #winner{
         font-size: 30px;
-        Margin: auto;
+        Margin-bottom: 10px;
     }
     
     #score {
@@ -42,21 +43,30 @@
      }
     #name{
         float: left;
-        padding-right: 10px;
+        padding-right: 20px;
         font-size: 25px;
         width: 100pt;
+        margin:auto;
+        text-align: center;
     }
-     
+    #player{
+        float:left;
+        /*padding-right: 10px;*/
+        width: 110px;
+        padding-right: 20px;
+    }
     input{
          
         font-family: 'Baloo Bhaina';
         /*position:absolute;*/
-        width: 300px;
+        width: 150px;
+        height:auto;
         margin: auto;
         font-size:30pt;
         background-color: white;
         border: thick;
         border-radius: 10px;
         text-align: center;
-        margin-left: 300px;
+        margin-left: 425px;
+        padding: 0;
      }
